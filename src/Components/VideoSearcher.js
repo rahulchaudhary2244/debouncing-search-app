@@ -1,10 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import { TextField } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import Autocomplete from "@mui/material/Autocomplete";
 import { VideoCard } from "./VideoCard";
+import { SearchBox } from "./SearchBox";
 
 export default function VideoSearcher(props) {
 	const API_URL = "https://crio-xflix.herokuapp.com/v1/videos";
@@ -40,17 +38,7 @@ export default function VideoSearcher(props) {
 
 	return (
 		<>
-			<Box mb={2}>
-				<TextField
-					size="small"
-					type="text"
-					name="search-box"
-					placeholder="Search for video title"
-					value={searchTitle}
-					onChange={(e) => setSearchTitle(e.target.value)}
-				/>
-			</Box>
-
+			<SearchBox searchTitle={searchTitle} setSearchTitle={setSearchTitle} />
 			<Grid container spacing={2}>
 				{videosList.map((video) => {
 					const { id, previewImage, genre, title, releaseDate } = video;
